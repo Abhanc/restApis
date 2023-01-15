@@ -2,7 +2,7 @@
 http://localhost:9500/items
 
 # to show all cotegory:
-http:localhost:9500/category
+http://localhost:9500/category
 
 # to show items wrt there cotegry:
 http://localhost:9500/items?categoryid=1
