@@ -13,22 +13,39 @@ let db;
 app.get("/", (req, res) => {
   res.send("hii from Express");
 });
-app.get("/items", (req, res) => {
-  db.collection("items")
-    .find()
-    .toArray((err, result) => {
-      if (err) throw err;
-      res.send(result);
-    });
-});
 
-app.get('/cotegory',(req,res) => {
-  let id = Number(req.params.cotegory_id)
-  db.collection('items').find({cotegory:id}).toArray((err,result) => {
-      if(err) throw err;
-      res.send(result)
+// app.get("/items", (req, res) => {
+//   db.collection("items").find().toArray((err, result) => {
+//       if (err) throw err;
+//       res.send(result);
+//     });
+// });
+
+app.get('/items',(req,res) => {
+  let categoryId = Number(req.query.categoryid)
+  let query={}
+  if(categoryId){
+    query = {category_id:categoryId}
+  }
+  db.collection('items').find(query).toArray((err,result)=>{
+    if(err) throw err;
+    res.send(result);
   })
 });
+
+app.get('/items',(req,res) => {
+  let categoryId = Number(req.query.categoryid)
+  let query={}
+  if(categoryId){
+    query = {category_id:categoryId}
+  }
+  db.collection('items').find(query).toArray((err,result)=>{
+    if(err) throw err;
+    res.send(result);
+  })
+});
+
+
 
 MongoClient.connect(mongoUrl, { useNewUrlParser: true }, (err, dc) => {
   if (err) console.log("Error while connecting");
@@ -38,3 +55,17 @@ MongoClient.connect(mongoUrl, { useNewUrlParser: true }, (err, dc) => {
   });
 });
 
+
+//Here url of apis
+
+// to show all items:
+//http://localhost:9500/items
+
+// to show all cotegory:
+// http:localhost:9500/category
+
+//to show items by there cotegry:
+// http://localhost:9500/items?categoryid=1  
+
+// to show there cotegory of any particular id:
+// http://localhost:9500/category?id=2
