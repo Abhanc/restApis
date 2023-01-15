@@ -4,7 +4,7 @@ http://localhost:9500/items
 # to show all cotegory:
 http://localhost:9500/category
 
-# to show items wrt there cotegry:
+# to show items wrt there cotegry id :
 http://localhost:9500/items?categoryid=1
 
 # to show there cotegory wrt there id:
