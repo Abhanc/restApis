@@ -33,13 +33,13 @@ app.get('/items',(req,res) => {
   })
 });
 
-app.get('/items',(req,res) => {
-  let categoryId = Number(req.query.categoryid)
+app.get('/category',(req,res) => {
+  let categoryId = Number(req.query.id)
   let query={}
   if(categoryId){
-    query = {category_id:categoryId}
+    query = {id:categoryId}
   }
-  db.collection('items').find(query).toArray((err,result)=>{
+  db.collection('category').find(query).toArray((err,result)=>{
     if(err) throw err;
     res.send(result);
   })
